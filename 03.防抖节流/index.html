@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      防抖：
+    </div>
+    <h3 id="debounce">
+    </h3>
+    <div>
+     节流：
+    </div>
+    <h3 id="throttle">
+    </h3>
+    <script src="./debounce.js"></script>
+    <script src="./throttle.js"></script>
+    <script>
+      const handleDebounce = debounce(function (e) {
+        document.getElementById('debounce').innerHTML = `${e.clientX},${e.clientY}`
+      }, 1000, true)
+      const handleThrottle = throttle2(function (e) {
+        document.getElementById('throttle').innerHTML = `${e.clientX},${e.clientY}`
+      }, 1000)
+      window.addEventListener('mousemove', handleDebounce, false)
+      window.addEventListener('mousemove', handleThrottle, false)
+    </script>
+  </body>
+</html>

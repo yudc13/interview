@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <header>
+    <style>
+      .outter {
+        width: 300px;
+        height: 300px;
+        background-color: antiquewhite;
+      }
+      .inner {
+        width: 200px;
+        height: 200px;
+        background-color: burlywood;
+      }
+      .center {
+        width: 100px;
+        height: 100px;
+        background-color: deeppink;
+      }
+    </style>
+  </header>
+  <body>
+    <div class="outter">
+      <div class="inner">
+        <div class="center"></div>
+      </div>
+    </div>
+    <a id='link' href="www.baidu.com">aaa</a>
+    <script>
+      const handleClick = function () {
+        console.log('click')
+      }
+      
+      // 只会执行一次
+      document.addEventListener('click', handleClick, false)
+      document.addEventListener('click', handleClick, false)
+
+      // 顺序执行
+      document.addEventListener('click', function () {
+        console.log('click1')
+      }, false)
+      document.addEventListener('click', function () {
+        console.log('click2')
+      }, false)
+
+      const outter = document.getElementsByClassName('outter')[0]
+      const innter = document.getElementsByClassName('innter')[0]
+      const center = document.getElementsByClassName('center')[0]
+      // DOM0级事件模型
+      // this 指向处理事件的DOM
+      // 默认是冒泡行为
+      window.onclick = function () {
+        console.log('window')
+      }
+      document.onclick = function () {
+        console.log('body')
+      }
+      center.onclick = function () {
+        console.log('center', this)
+      }
+
+      // DOM2级事件模型
+      // 执行顺序：捕获阶段 -> 目标阶段 -> 冒泡阶段
+      window.addEventListener('click', function () {
+        console.log('addEventListener window ')
+      }, false)
+      document.addEventListener('click', function () {
+        console.log('addEventListener document')
+      }, false)
+      outter.addEventListener('click', function () {
+        console.log('addEventListener outter')
+      }, false)
+      center.addEventListener('click', function () {
+        console.log('addEventListener center')
+      }, false)
+
+      // IE事件模型
+      // this执行window
+
+
+      var link = document.getElementById('link')
+      var tick = new Promise((resolve) => {
+        link.addEventListener('click', resolve, { once: true })
+      })
+      tick.then((e) => {
+        e.preventDefault()
+        console.log('ok')
+      })
+      link.click()
+
+
+    </script>
+  </body>
+</html>
