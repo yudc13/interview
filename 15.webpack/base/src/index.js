@@ -1,22 +1,6 @@
-const sum = (a, b) => a + b
-const name = 'webpack'
-console.log(sum(1, 2), `hello ${name}`)
-
-function readonly(target, key, descriptor) {
-	console.log(target, key, descriptor)
-	descriptor.writable = false
+const fn = () => {
+	debugger
+	console.log(a)
 }
 
-class Person {
-	@readonly PI = 3.14
-}
-
-const p = new Person()
-
-p.PI = 3.45
-console.log(p.PI)
-
-const p1 = new Promise((resolve) => {
-	resolve(1)
-})
-console.log(p1)
+fn()

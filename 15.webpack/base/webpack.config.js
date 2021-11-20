@@ -6,6 +6,14 @@ const resolve = (dir) => path.resolve(__dirname, dir)
 
 module.exports = {
 	mode: 'development',
+	/**
+	 * source-map: 会生成.map文件 代码可以定位到行列 （看到的源代码）
+	 * eval: 使用eval把代码包裹起来 可缓存，代码可以定位到行列 （看到的源代码）
+	 * eval-source-map: 可以缓存map文件 代码可以定位到 行 列 （看到的源代码）
+	 * cheap-source-map: 只包含行，不包含列，也不包括loader的souce-map(看到的代码是经过loader转换过的)
+	 * cheap-module-source-map：只包含行，不包含列 包含loder的source-map
+	 */
+	devtool: 'source-map',
 	entry: resolve('./src/index.js'),
 	output: {
 		filename: 'bundle.js',
@@ -26,15 +34,15 @@ module.exports = {
 							presets: [
 								[
 									'@babel/preset-env',
-									{
-                    // entry 需要手动引入polyfill 会根据browserslist来兼容
-										useBuiltIns: 'usage', // 按需加载polyfills
-										corejs: { version: '3.0' },
-										targets: {
-											// chrome: '58',
-											// ie: "11"
-										},
-									},
+									// {
+									// 	// entry 需要手动引入polyfill 会根据browserslist来兼容
+									// 	useBuiltIns: 'usage', // 按需加载polyfills
+									// 	corejs: { version: '3.0' },
+									// 	targets: {
+									// 		// chrome: '58',
+									// 		// ie: "11"
+									// 	},
+									// },
 								],
 							],
 							plugins: [
