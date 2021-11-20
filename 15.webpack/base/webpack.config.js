@@ -27,6 +27,7 @@ module.exports = {
 								[
 									'@babel/preset-env',
 									{
+                    // entry 需要手动引入polyfill 会根据browserslist来兼容
 										useBuiltIns: 'usage', // 按需加载polyfills
 										corejs: { version: '3.0' },
 										targets: {
