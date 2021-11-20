@@ -1,9 +1,17 @@
-import './styles.css'
-import './styles.less'
-console.log(1)
+const sum = (a, b) => a + b
+const name = 'webpack'
+console.log(sum(1, 2), `hello ${name}`)
 
-const user = require('../assets/th.jpg')
+function readonly(target, key, descriptor) {
+	console.log(target, key, descriptor)
+	descriptor.writable = false
+}
 
-const img = new Image()
-img.src = user.default
-document.body.appendChild(img)
+class Person {
+	@readonly PI = 3.14
+}
+
+const p = new Person()
+
+p.PI = 3.45
+console.log(p.PI)
