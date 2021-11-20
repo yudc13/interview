@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>浏览器工作原理</title>
+  <link rel="stylesheet" type="text/css" href="./styles.css" />
+</head>
+<body>
+  <!-- 
+    css会阻塞DOM渲染，有可能会阻塞DOM解析（间接的）
+    js会阻塞DOM解析，执行js时需要等待css解析完才能执行
+    预扫描时，css和js是并行加载的
+   -->
+  <div class="box"></div>
+  <!-- 这里会阻塞下面DOM的解析和渲染 -->
+  <script src="./index.js"></script>
+  <div class="box"></div>
+</body>
+</html>
