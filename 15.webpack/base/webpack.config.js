@@ -1,6 +1,7 @@
 const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 
 const resolve = (dir) => path.resolve(__dirname, dir)
 
@@ -14,6 +15,11 @@ module.exports = {
 	 * cheap-module-source-map：只包含行，不包含列 包含loder的source-map
 	 */
 	devtool: 'source-map',
+	// externals: {
+	// 	lodash: {
+	// 		root: '_',
+	// 	},
+	// },
 	entry: resolve('./src/index.js'),
 	output: {
 		filename: 'bundle.js',
@@ -44,6 +50,7 @@ module.exports = {
 									// 	},
 									// },
 								],
+								'@babel/preset-react',
 							],
 							plugins: [
 								/**
@@ -122,6 +129,25 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: resolve('./public/index.html'),
+		}),
+		new HtmlWebpackExternalsPlugin({
+			externals: [
+				{
+					module: 'lodash',
+					entry: 'https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.js',
+					global: '_',
+				},
+				{
+					module: 'react',
+					entry: 'https://unpkg.com/react@17/umd/react.development.js',
+					global: 'React',
+				},
+				{
+					module: 'react-dom',
+					entry: 'https://unpkg.com/react-dom@17/umd/react-dom.development.js',
+					global: 'ReactDOM',
+				},
+			],
 		}),
 	],
 }

@@ -1,6 +1,5 @@
-const fn = () => {
-	debugger
-	console.log(a)
-}
+import React from 'react'
+import ReactDOM from 'react-dom'
+import _ from 'lodash'
 
-fn()
+ReactDOM.render(<h1>Hello, {_.join([1, 2, 3])}</h1>, document.getElementById('root'))
