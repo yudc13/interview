@@ -23,7 +23,19 @@ module.exports = {
 					{
 						loader: 'babel-loader',
 						options: {
-							presets: ['@babel/preset-env'],
+							presets: [
+								[
+									'@babel/preset-env',
+									{
+										useBuiltIns: 'usage', // 按需加载polyfills
+										corejs: { version: '3.0' },
+										targets: {
+											// chrome: '58',
+											// ie: "11"
+										},
+									},
+								],
+							],
 							plugins: [
 								/**
                  如果你手动引用了插件 @babel/plugin-proposal-class-properties 并使用了它，请确保在引用 @babel/plugin-proposal-class-properties 之前引用 @babel/plugin-proposal-decorators。
@@ -31,6 +43,9 @@ module.exports = {
                  当使用 legacy: true 模式时，必须在 loose 模式下使用 @babel/plugin-proposal-class-properties 来支持 @babel/plugin-proposal-decorators
                  */
 								['@babel/plugin-proposal-decorators', { legacy: true }],
+								// loose 规定类属性的声明方式
+								// true 使用赋值表达式
+								// false 使用Object.defineProperty
 								['@babel/plugin-proposal-class-properties', { loose: true }],
 							],
 						},

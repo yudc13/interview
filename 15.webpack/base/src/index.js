@@ -15,3 +15,8 @@ const p = new Person()
 
 p.PI = 3.45
 console.log(p.PI)
+
+const p1 = new Promise((resolve) => {
+	resolve(1)
+})
+console.log(p1)
