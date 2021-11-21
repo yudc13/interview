@@ -4,3 +4,7 @@ h1 {
 	background-image: url('./images/th.jpg');
 	background-size: 100% 100%;
 }
+
+::placeholder {
+	color: deeppink;
+}

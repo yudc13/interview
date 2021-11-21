@@ -9,6 +9,7 @@ console.log(process.env.NODE_ENV)
 ReactDOM.render(
 	<div>
 		<h1>Hello, {_.join([1, 2, 3])}</h1>
+		<input placeholder='请输入' />
 		<img src={user} alt='user' />
 	</div>,
 	document.getElementById('root')
