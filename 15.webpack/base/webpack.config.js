@@ -126,6 +126,15 @@ module.exports = {
 			// 配置访问服务的目录，如果没有配置 则默认使用output.publicPath
 			// publicPath: '/',
 		},
+		// 代理
+		proxy: {
+			'/api': {
+				target: 'http://localhost:9000',
+				pathRewrite: {
+					'^/api': '',
+				},
+			},
+		},
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
