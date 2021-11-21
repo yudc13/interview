@@ -3,11 +3,16 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const resolve = (dir) => path.resolve(__dirname, dir)
 
+const isDev = process.env.NODE_ENV === 'development'
+console.log(process.env.NODE_ENV)
+
 module.exports = {
-	mode: 'development',
+	mode: process.env.NODE_ENV,
 	/**
 	 * source-map: 会生成.map文件 代码可以定位到行列 （看到的源代码）
 	 * eval: 使用eval把代码包裹起来 可缓存，代码可以定位到行列 （看到的源代码）
@@ -125,6 +130,10 @@ module.exports = {
 			// },
 		],
 	},
+	optimization: {
+		minimize: !isDev,
+		minimizer: isDev ? [] : [new TerserPlugin(), new CssMinimizerPlugin()],
+	},
 	devServer: {
 		port: 3000,
 		hot: true,
@@ -159,6 +168,7 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].css',
 		}),
+		new MiniCssExtractPlugin(),
 		new HtmlWebpackExternalsPlugin({
 			externals: [
 				{
