@@ -1,10 +1,15 @@
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// import _ from 'lodash'
-// console.log(process.env.NODE_ENV)
-// ReactDOM.render(<h1>Hello, {_.join([1, 2, 3])}</h1>, document.getElementById('root'))
+import React from 'react'
+import ReactDOM from 'react-dom'
+import _ from 'lodash'
+import('./utils') // 这里会产生一个chunk
+import user from './images/user.png'
 
-const p = new Promise((resolve) => {
-	resolve(1)
-})
-console.log(p)
+import './styles.css'
+console.log(process.env.NODE_ENV)
+ReactDOM.render(
+	<div>
+		<h1>Hello, {_.join([1, 2, 3])}</h1>
+		<img src={user} alt='user' />
+	</div>,
+	document.getElementById('root')
+)

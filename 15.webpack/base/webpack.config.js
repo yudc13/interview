@@ -2,6 +2,7 @@ const path = require('path')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackExternalsPlugin = require('html-webpack-externals-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const resolve = (dir) => path.resolve(__dirname, dir)
 
@@ -22,12 +23,13 @@ module.exports = {
 	// },
 	entry: resolve('./src/index.js'),
 	output: {
-		filename: 'bundle.js',
+		filename: '[name].[contenthash:8].js',
+		chunkFilename: '[name].js',
 		path: resolve('dist'),
 		// 每次生成文件之前 清空output目录（dist）
 		clean: true,
 		// 以runtime（运行时）或者loader（载入时）所创建的每个URL为前缀
-		// publicPath: '/',
+		publicPath: '/',
 	},
 	module: {
 		rules: [
@@ -41,15 +43,15 @@ module.exports = {
 								[
 									// 值转换ES6语法，不转换ES6API
 									'@babel/preset-env',
-									{
-										// entry 需要手动引入polyfill 会根据browserslist来兼容
-										useBuiltIns: 'usage', // 按需加载polyfills
-										corejs: { version: '3.0' },
-										targets: {
-											chrome: '58',
-											ie: '11',
-										},
-									},
+									// {
+									// 	// entry 需要手动引入polyfill 会根据browserslist来兼容
+									// 	useBuiltIns: 'usage', // 按需加载polyfills
+									// 	corejs: { version: '3.0' },
+									// 	targets: {
+									// 		chrome: '58',
+									// 		ie: '11',
+									// 	},
+									// },
 								],
 								'@babel/preset-react',
 							],
@@ -71,12 +73,12 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
+				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 			{
 				test: /\.less$/,
 				use: [
-					'style-loader',
+					MiniCssExtractPlugin.loader,
 					{
 						loader: 'css-loader',
 						options: {
@@ -93,8 +95,13 @@ module.exports = {
 					{
 						loader: 'url-loader',
 						options: {
+							name: '[name].[ext]',
+							outputPath: 'images',
+							// output.publicpath + outputPath
+							// 这里一般不用配置，防止配置错误导致资源不能404
+							// publicPath: '/images',
 							// 如果文件超过指定大小 则使用file-loader去处理
-							limit: 10240,
+							limit: 1024,
 						},
 					},
 				],
@@ -139,6 +146,9 @@ module.exports = {
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: resolve('./public/index.html'),
+		}),
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].css',
 		}),
 		new HtmlWebpackExternalsPlugin({
 			externals: [
