@@ -5,7 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"build:base": "cross-env NODE_ENV=production webpack --config ./base/webpack.config.js",
-		"start:base": "cross-env NODE_ENV=development webpack-cli serve --config ./base/webpack.config.js"
+		"start:base": "cross-env NODE_ENV=development webpack-cli serve --config ./base/webpack.config.js",
+		"build:bundle": "cross-env NODE_ENV=production webpack --config ./bundle/webpack.config.js"
 	},
 	"keywords": [],
 	"author": "",
