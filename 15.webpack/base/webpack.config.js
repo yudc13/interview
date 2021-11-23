@@ -165,10 +165,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: resolve('./public/index.html'),
 		}),
+		// 提起css文件
 		new MiniCssExtractPlugin({
 			filename: 'css/[name].css',
 		}),
-		new MiniCssExtractPlugin(),
 		new HtmlWebpackExternalsPlugin({
 			externals: [
 				{
