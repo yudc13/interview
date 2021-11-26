@@ -6,7 +6,8 @@
 	"scripts": {
 		"build:base": "cross-env NODE_ENV=production webpack --config ./base/webpack.config.js",
 		"start:base": "cross-env NODE_ENV=development webpack-cli serve --config ./base/webpack.config.js",
-		"build:bundle": "cross-env NODE_ENV=production webpack --config ./bundle/webpack.config.js"
+		"build:bundle": "cross-env NODE_ENV=production webpack --config ./bundle/webpack.config.js",
+		"start:bundle": "cross-env NODE_ENV=development webpack-cli serve --config ./bundle/webpack.config.js"
 	},
 	"keywords": [],
 	"author": "",
@@ -15,9 +16,11 @@
 		"@babel/core": "^7.16.0",
 		"@babel/plugin-proposal-class-properties": "^7.16.0",
 		"@babel/plugin-proposal-decorators": "^7.16.4",
+		"@babel/plugin-transform-arrow-functions": "^7.16.0",
 		"@babel/preset-env": "^7.16.4",
 		"@babel/preset-react": "^7.16.0",
 		"babel-loader": "^8.2.3",
+		"babel-types": "^6.26.0",
 		"cross-env": "^7.0.3",
 		"css-loader": "^6.5.1",
 		"css-minimizer-webpack-plugin": "^3.1.4",

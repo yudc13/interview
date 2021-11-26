@@ -1,3 +1,3 @@
-const title = require('./title')
-
-console.log(title)
+import(/* webpackChunkName: 'title'*/'./title').then((res) => {
+	console.log('res: ', res)
+})

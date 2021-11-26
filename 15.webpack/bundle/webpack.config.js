@@ -8,6 +8,7 @@ module.exports = {
 	devtool: 'source-map',
 	output: {
 		filename: 'bundle.js',
+		chunkFilename: '[name].js',
 		clean: true,
 		path: path.resolve(__dirname, './dist'),
 	},
