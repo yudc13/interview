@@ -1,3 +1,4 @@
-import(/* webpackChunkName: 'title'*/'./title').then((res) => {
-	console.log('res: ', res)
-})
+// import { flatten } from 'lodash'
+import flatten from 'lodash/flatten'
+
+flatten([1, [2]])

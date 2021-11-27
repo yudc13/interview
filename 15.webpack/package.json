@@ -7,7 +7,8 @@
 		"build:base": "cross-env NODE_ENV=production webpack --config ./base/webpack.config.js",
 		"start:base": "cross-env NODE_ENV=development webpack-cli serve --config ./base/webpack.config.js",
 		"build:bundle": "cross-env NODE_ENV=production webpack --config ./bundle/webpack.config.js",
-		"start:bundle": "cross-env NODE_ENV=development webpack-cli serve --config ./bundle/webpack.config.js"
+		"start:bundle": "cross-env NODE_ENV=development webpack-cli serve --config ./bundle/webpack.config.js",
+		"build:flow": "cross-env NODE_ENV=production webpack --config ./flow/webpack.config.js"
 	},
 	"keywords": [],
 	"author": "",
@@ -46,6 +47,7 @@
 		"core-js": "^3.19.1",
 		"lodash": "^4.17.21",
 		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"react-dom": "^17.0.2",
+		"tapable": "^2.2.1"
 	}
 }
