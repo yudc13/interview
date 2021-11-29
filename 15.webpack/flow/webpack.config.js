@@ -12,6 +12,7 @@ module.exports = {
 	output: {
 		filename: 'bundle.js',
 		chunkFilename: '[name].js',
+		publicPath: 'auto',
 		clean: true,
 		path: path.resolve(__dirname, './dist'),
 	},
@@ -19,14 +20,34 @@ module.exports = {
 		rules: [
 			{
 				test: /.js$/,
-				use: path.resolve(__dirname, './demo/loaders/test-loader'),
+				use: path.resolve(__dirname, './demo/loaders/babel-loader'),
+			},
+			{
+				test: /.png$/,
+				use: [
+					{
+						loader: path.resolve(__dirname, './demo/loaders/url-loader'),
+						options: {
+							name: '[name].[hash:5].[ext]',
+							esModule: false,
+							limit: 1 * 1024,
+						},
+					},
+				],
+			},
+			{
+				test: /.less$/,
+				use: [
+					path.resolve(__dirname, './demo/loaders/style-loader'),
+					path.resolve(__dirname, './demo/loaders/less-loader'),
+				],
 			},
 		],
 	},
 	plugins: [
-		// new HtmlWebpackPlugin({
-		// 	template: path.resolve(__dirname, './public/index.html'),
-		// }),
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, './public/index.html'),
+		}),
 		new RunPlugin(),
 		new DonePlugin(),
 	],
