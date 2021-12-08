@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>requestIdleCallback</title>
+	</head>
+	<body>
+		<script>
+			function sleep(delay) {
+				for (let start = Date.now(); Date.now() - start < delay; ) {}
+			}
+			let works = [
+				function () {
+					console.log('任务一开始')
+					sleep(200)
+					console.log('任务一结束')
+				},
+				function () {
+					console.log('任务二开始')
+					sleep(100)
+					console.log('任务二结束')
+				},
+				function () {
+					console.log('任务三开始')
+					sleep(300)
+					console.log('任务三结束')
+				},
+			]
+
+			// 浏览器空闲时间执行回调
+			function workLoop(deadLine) {
+				console.log(deadLine.timeRemaining(), deadLine.didTimeout)
+				// 如果当前帧还有剩余时间或者已经超时了 并且还有未执行完的任务
+				while ((deadLine.timeRemaining() > 0 || deadLine.didTimeout) && works.length > 0) {
+					preformUnitOfWord()
+				}
+				if (works.length > 0) {
+					window.requestIdleCallback(workLoop, { timeout: 1000 })
+				}
+			}
+
+			function preformUnitOfWord() {
+				// 从works中取出任务执行
+				const task = works.shift()
+				task()
+			}
+
+			window.requestIdleCallback(workLoop, { timeout: 1000 })
+		</script>
+	</body>
+</html>

@@ -39,6 +39,14 @@ module.exports = {
 				test: /.less$/,
 				use: [
 					path.resolve(__dirname, './demo/loaders/style-loader'),
+					{
+						loader: path.resolve(__dirname, './demo/loaders/css-loader'),
+						options: {
+							url: false,
+							import: true,
+							importLoaders: 1,
+						},
+					},
 					path.resolve(__dirname, './demo/loaders/less-loader'),
 				],
 			},
