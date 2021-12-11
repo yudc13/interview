@@ -12,7 +12,7 @@ const hook = new AsyncParallelHook(['name'])
 hook.tapAsync('1', (name, callback) => {
 	setTimeout(() => {
 		console.log('1', name)
-		callback('2')
+		callback()
 	}, 1000)
 })
 
@@ -23,7 +23,7 @@ hook.tapAsync('2', (name, callback) => {
 	}, 2000)
 })
 
-hook.callAsync('AsyncParallelHook', (err, callback) => {
+hook.callAsync('AsyncParallelHook', (err) => {
 	console.log(err)
 	console.timeEnd('AsyncParallelHook')
 })

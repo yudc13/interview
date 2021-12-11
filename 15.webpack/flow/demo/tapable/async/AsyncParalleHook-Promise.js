@@ -12,7 +12,8 @@ hook.tapPromise('1', (name) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
 			console.log('1', name)
-			resolve('1')
+			// 这里的resolve只是表示当前事件回调处于fillfuled状态
+			resolve(1)
 		}, 1000)
 	})
 })
@@ -26,7 +27,12 @@ hook.tapPromise('2', (name) => {
 	})
 })
 
-hook.promise('AsyncParallelHook').then((res) => {
-	console.log(res)
-	console.timeEnd('AsyncParallelHook')
-})
+hook.promise('AsyncParallelHook').then(
+	(res) => {
+		console.log(res)
+		console.timeEnd('AsyncParallelHook')
+	},
+	(error) => {
+		console.log(error)
+	}
+)
