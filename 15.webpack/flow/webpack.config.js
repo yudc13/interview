@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const RunPlugin = require('./demo/plugins/run-plugin')
 const DonePlugin = require('./demo/plugins/done-plugin')
+const AutoExternalPlugin = require('./demo/plugins/auto-external-plugin')
 
 const path = require('path')
 
@@ -58,5 +59,11 @@ module.exports = {
 		}),
 		new RunPlugin(),
 		new DonePlugin(),
+		new AutoExternalPlugin({
+			lodash: {
+				expose: '_',
+				url: 'https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.core.min.js',
+			},
+		}),
 	],
 }
