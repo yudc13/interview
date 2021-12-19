@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>A</title>
+	</head>
+	<body>
+		<h2>A页面</h2>
+		<iframe src="http://localhost:4000/b.html" id="frame" onload="load()"></iframe>
+		<script>
+			function load() {
+				let frame = document.getElementById('frame')
+				// 给4000页面发送数据
+				frame.contentWindow.postMessage('我是A页面', 'http://localhost:4000')
+				// 接收4000页面的数据
+				window.onmessage = function (e) {
+					console.log('A页面收到了来自B页面的数据: ', e.data)
+				}
+			}
+		</script>
+	</body>
+</html>
