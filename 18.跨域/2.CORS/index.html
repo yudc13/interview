@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>CROS</title>
+	</head>
+	<body>
+		<script>
+			/**
+			 * 简单请求必须满足以下条件
+			 * 1.请求方法：HEAD，GET，POST
+			 * 2.请求头不能超出下面几个
+			 *  a) Accept
+			 *  b) Accept-Language
+			 *  c) Content-Language
+			 *  d) Context-Type：只限于 application/x-www-form-urlencoded,multipart/form-data text/pain
+			 *
+			 * 除了以上条件 其他的都是复杂请求，复杂请求会在真正请求的时候，会先发送一个OPTIONS请求
+			 *
+			 * */
+			const xmr = new XMLHttpRequest()
+			document.cookie = 'uuid=abc'
+			xmr.open('DELETE', 'http://localhost:4000/getData')
+			xmr.withCredentials = true
+			xmr.setRequestHeader('X-Custom-Header', 'test')
+			xmr.onreadystatechange = function () {
+				if (xmr.readyState === 4) {
+					if (xmr.status === 200) {
+						// 如果服务端没有设置允许的自定义请求头，那么客户端是拿不到的
+						console.log(xmr.response, xmr.getResponseHeader('token'))
+					}
+				}
+			}
+			xmr.send()
+		</script>
+	</body>
+</html>
