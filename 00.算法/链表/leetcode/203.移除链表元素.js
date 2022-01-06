@@ -16,5 +16,3 @@ function removeElements(head, val) {
 	}
 	return head
 }
-
-module.exports = removeElements

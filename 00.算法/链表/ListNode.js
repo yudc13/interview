@@ -1,5 +1,3 @@
-const removeElements = require('./leetcode/203.移除链表元素')
-
 class ListNode {
 	constructor(value) {
 		// 节点上存储的元素
@@ -43,18 +41,13 @@ class ListNode {
 const head = new ListNode('A')
 const nodeB = new ListNode('B')
 const nodeC = new ListNode('C')
-const nodeB2 = new ListNode('B')
+const nodeD = new ListNode('D')
 const nodeE = new ListNode('E')
 
-head.next = nodeB
-nodeB.next = nodeC
-nodeC.next = nodeB2
-nodeB2.next = nodeE
-
-
-const a = removeElements(head, 'A')
-
-console.log(JSON.stringify(a, null, 2))
-
+head.insert('A', nodeB)
+// head.insert('B', nodeC)
+// head.insert('C', nodeD)
+// head.insert('D', nodeE)
+nodeB.next = head
 
 module.exports = head
