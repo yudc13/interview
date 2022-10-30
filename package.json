@@ -19,6 +19,8 @@
   "homepage": "https://github.com/yudc13/interview#readme",
   "dependencies": {
     "crypto-js": "^4.1.1",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "mkdirp": "^1.0.4",
+    "superagent": "^8.0.0"
   }
 }

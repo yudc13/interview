@@ -1,5 +1,8 @@
-// 引用a.js模块
-var a = require('./a')
-console.log('b.js: ', a)
-// exports.x = 'b1'
-// exports.x = 'b2'
+exports.loaded = false
+
+const a = require('./a')
+
+module.exports = {
+	a,
+	loaded: true
+}
