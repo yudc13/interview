@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>贝塞尔曲线</title>
+		<style>
+			#canvas {
+				border: 1px solid pink;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+			const canvas = document.getElementById('canvas')
+			// 渲染上下文
+			const ctx = canvas.getContext('2d')
+			// ctx.strokeRect(75, 25, 10, 10)
+			// ctx.strokeRect(25, 25, 10, 10)
+			// ctx.strokeRect(25, 62.5, 10, 10)
+			// ctx.beginPath()
+			// ctx.moveTo(75, 25)
+			// ctx.quadraticCurveTo(25, 25, 25, 62.5)
+			// ctx.quadraticCurveTo(25, 100, 50, 100)
+			// ctx.quadraticCurveTo(50, 120, 30, 125)
+			// ctx.quadraticCurveTo(60, 120, 65, 100)
+			// ctx.quadraticCurveTo(125, 100, 125, 62.5)
+			// ctx.quadraticCurveTo(125, 20, 75, 25)
+			// ctx.stroke()
+
+			// ctx.strokeRect(50, 100, 100, 100)
+
+			ctx.beginPath()
+			ctx.moveTo(75, 100)
+			ctx.quadraticCurveTo(50, 100, 50, 125)
+			ctx.lineTo(50, 175)
+			ctx.quadraticCurveTo(50, 200, 75, 200)
+			ctx.lineTo(125, 200)
+			ctx.quadraticCurveTo(150, 200, 150, 175)
+			ctx.lineTo(150, 125)
+			ctx.quadraticCurveTo(150, 100, 125, 100)
+			ctx.lineTo(75, 100)
+			ctx.stroke()
+		</script>
+	</body>
+</html>

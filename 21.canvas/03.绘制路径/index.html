@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>绘制路径</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="400" height="400"></canvas>
+		<script>
+			const canvas = document.getElementById('canvas')
+			// 渲染上下文
+			const ctx = canvas.getContext('2d')
+
+			// ctx.strokeRect(110, 75, 100, 100)
+			// ctx.strokeRect(75, 75, 100, 100)
+
+			// ctx.beginPath()
+			// ctx.moveTo(75, 50)
+			// ctx.lineTo(100, 75)
+			// ctx.lineTo(100, 25)
+			// ctx.fill()
+
+			// 画一个圆
+			ctx.beginPath()
+			ctx.arc(75, 75, 50, 0, Math.PI * 2, true) // 绘制
+			ctx.moveTo(110, 75)
+			ctx.arc(75, 75, 35, 0, Math.PI, false) // 口 (顺时针)
+			ctx.moveTo(65, 55)
+			ctx.arc(55, 55, 10, 0, Math.PI * 2, true)
+			ctx.moveTo(105, 55)
+			ctx.arc(95, 55, 10, 0, Math.PI * 2, true)
+			ctx.strokeStyle = 'deeppink'
+			ctx.stroke()
+		</script>
+	</body>
+</html>

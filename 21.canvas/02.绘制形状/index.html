@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>canvas绘制形状</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="600" height="600"></canvas>
+		<script>
+			const canvas = document.getElementById('canvas')
+			// 渲染上下文
+			const ctx = canvas.getContext('2d')
+
+			// fillStyle需要写在fillRect前面才会生效
+			ctx.fillStyle = 'pink'
+			// 绘制一个填充的矩形
+			// x, y, width, height
+			ctx.fillRect(10, 10, 50, 50)
+
+			ctx.fillStyle = 'rgba(0, 0, 200, 0.5)'
+			ctx.fillRect(60, 60, 60, 60)
+
+			// 绘制矩形边框
+			ctx.strokeRect(120, 10, 50, 50)
+
+			ctx.fillRect(200, 200, 100, 100)
+			// 清除指定矩形区域，让其变成透明的
+			ctx.clearRect(220, 220, 60, 60)
+			// 画一个矩形边框
+			ctx.strokeRect(230, 230, 40, 40)
+		</script>
+	</body>
+</html>
